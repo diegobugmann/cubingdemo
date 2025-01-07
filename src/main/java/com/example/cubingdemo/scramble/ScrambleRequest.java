@@ -2,6 +2,13 @@ package com.example.cubingdemo.scramble;
 
 public class ScrambleRequest {
 
+    public ScrambleRequest() {
+    }
+
+    public ScrambleRequest(Long length) {
+        this.length = length;
+    }
+
     private Long length;
     private Long time;
 

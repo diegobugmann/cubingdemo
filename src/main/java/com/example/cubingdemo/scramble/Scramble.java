@@ -74,15 +74,20 @@ public class Scramble {
         this.moves = new Move[this.length.intValue()];
         StringBuilder movesStringBuilder = new StringBuilder();
         for (int i = 0; i < this.length; i++) {
-            Move move = Move.values()[(int) (Math.random() * Move.values().length)];
             Move previousMove = i > 0 ? this.moves[i - 1] : null;
-            while (previousMove != null && (move.getDisplayValue().charAt(0) == previousMove.getDisplayValue().charAt(0))) {
-                move = Move.values()[(int) (Math.random() * Move.values().length)];
-            }
+            Move move = generateNextMove(previousMove);
             this.moves[i] = move;
             movesStringBuilder.append(move.getDisplayValue()).append(" ");
         }
         this.movesAsString = movesStringBuilder.toString().trim();
+    }
+
+    private Move generateNextMove(Move previousMove) {
+        Move move;
+        do {
+            move = Move.values()[(int) (Math.random() * Move.values().length)];
+        } while (previousMove != null && move.getDisplayValue().charAt(0) == previousMove.getDisplayValue().charAt(0));
+        return move;
     }
 
     public Scramble() {

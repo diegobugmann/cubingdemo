@@ -1,6 +1,7 @@
 package com.example.cubingdemo.scramble;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -24,7 +25,7 @@ public class ScrambleController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public Iterable<Scramble> getScrambles(@PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC, value = 20) Pageable p) {
+    public Page<Scramble> getScrambles(@PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC, value = 20) Pageable p) {
         return this.scrambleService.getScrambles(p);
     }
 

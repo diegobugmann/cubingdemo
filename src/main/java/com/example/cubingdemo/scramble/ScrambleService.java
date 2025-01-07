@@ -1,7 +1,7 @@
 package com.example.cubingdemo.scramble;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +13,7 @@ public class ScrambleService {
         this.scrambleRepository = scrambleRepository;
     }
 
-    public Iterable<Scramble> getScrambles(Pageable p) {
+    public Page<Scramble> getScrambles(Pageable p) {
         return this.scrambleRepository.findAll(p);
     }
 
